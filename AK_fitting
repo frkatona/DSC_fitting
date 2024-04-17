@@ -1,0 +1,32 @@
+import pandas as pd
+from scipy.optimize import curve_fit
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the CSV data
+file_path = r'CSVs\10_10Cmin_temp_alpha.csv'
+data = pd.read_csv(file_path)
+
+
+# Define the sigmoid function
+def sigmoid(T, A, B, T_m):
+    return A / (1 + np.exp(-B * (T - T_m)))
+
+# Initial guess for the parameters [A, B, T_m]
+initial_guess = [1e-5, 1, 80]  # Example: A = 1e-5, B = 1, T_m = midpoint guess around 80
+
+# Fit the curve
+popt, pcov = curve_fit(sigmoid, data['Temp'], data['Alpha'], p0=initial_guess)
+
+# Extracting the fitted parameters and the standard deviations of the parameters
+A_fit, B_fit, T_m_fit = popt
+std_errors = np.sqrt(np.diag(pcov))  # Standard deviations of the fitted parameters
+
+print(A_fit, B_fit, T_m_fit, std_errors)
+
+# Plot the data and the fitted curve
+plt.plot(data['Temp'], data['Alpha'], 'o', label='data')
+plt.plot(data['Temp'], sigmoid(data['Temp'], A_fit, B_fit, T_m_fit), label='fit')
+plt.legend()
+plt.show()
+
