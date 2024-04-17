@@ -2,8 +2,8 @@
 
 This Python script is used for fitting a sigmoid function to DSC data. The dataset is expected to be in a CSV file, with columns for temperature (Temp) and alpha (Alpha).
 
-![Sigmoid](Exports\sigmoidfit.png)
-![Sigmoid](Exports\sigmoidfit_zoom.png)
+![Sigmoid](Exports/sigmoidfit.png)
+![Sigmoid](Exports/sigmoidfit_zoom.png)
 
 
 ## Dependencies
