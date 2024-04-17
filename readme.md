@@ -47,10 +47,10 @@ DSC data can be used to explore cure kinetics
 
 and expressing the conversion rate instead as an fraction of total conversion,
 
-### Derivative of DSC data:
+### conversion:
 ![Sigmoid](Hong_1b.png)
 
-the resulting data can be used in Chang plots to determine the activation energy, pre-exponential factor, and reaction order.
+the resulting data can be used in Chang plots to determine the activation energy, pre-exponential factor, and (maybe?) reaction order.
 
 ### Chang plot (unmodified):
 ![Sigmoid](Hong_6.png)
@@ -87,7 +87,7 @@ is plotted against
 
 $$\frac{1000}{T}$$
 
-and the slope and intercept of the plot can be used to determine the activation energy, pre-exponential factor, and reaction order.
+and the slope and intercept of the linear fit to this plot represent the activation energy and pre-exponential factor, respectively, for the reaction.
 
 ## References
 1. In-Kwon Hong, Sangmook Lee, ["Cure kinetics and modeling the reaction of silicone rubber"](https://www.sciencedirect.com/science/article/abs/pii/S1226086X12001645) (2013) Journal of Industrial and Engineering Chemistry, 19, 6, 2041-2046

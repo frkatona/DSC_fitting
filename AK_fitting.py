@@ -54,7 +54,7 @@ n = 1 # order of reaction (maybe fit later)
 
 # Filter data for a specific temperature range
 temperature_lower_bound = 80
-temperature_upper_bound = 120
+temperature_upper_bound = 110
 filtered_data = data[(data['Temp'] >= temperature_lower_bound) & (data['Temp'] <= temperature_upper_bound)]
 
 # Convert temperature to Kelvin for the plot
@@ -92,6 +92,4 @@ plt.xticks(fontsize=fontsize)
 plt.yticks(fontsize=fontsize)
 
 plt.show()
-
 # %%
-
