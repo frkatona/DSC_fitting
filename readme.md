@@ -69,11 +69,7 @@ where k is
 
 $$k(T) = k_0 \cdot exp\left(\frac{-E_a}{RT}\right)$$
 
-and $k_0$ is the pre-exponential factor, $E_a$ is the activation energy, R is the gas constant, and T is the temperature.  Another expression of the the degree of conversion $\alpha$ is 
-
-$$\alpha = \frac{c_0-c_t}{c_0-c_f}$$
-
-where $c_0$ is the initial concentration, $c_t$ is the concentration at time t, and $c_f$ is the final concentration.
+and $k_0$ is the pre-exponential factor, $E_a$ is the activation energy, R is the gas constant, and T is the temperature.  
 
 Along with the heating rate $\beta$,
 

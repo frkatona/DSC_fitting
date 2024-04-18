@@ -46,15 +46,15 @@ plt.yticks(fontsize=fontsize)
 plt.show()
 
 #%%
-
 ## Chang plot
 
 beta = 10 # K/min
 n = 1 # order of reaction (maybe fit later)
 
 # Filter data for a specific temperature range
-temperature_lower_bound = 80
-temperature_upper_bound = 110
+temperature_lower_bound = 85
+temperature_upper_bound = 100
+# Filter data for a specific temperature range
 filtered_data = data[(data['Temp'] >= temperature_lower_bound) & (data['Temp'] <= temperature_upper_bound)]
 
 # Convert temperature to Kelvin for the plot
@@ -64,7 +64,7 @@ filtered_data['Temp_K'] = filtered_data['Temp'] + 273.15
 filtered_data['dAlpha_dT'] = np.gradient(filtered_data['Alpha'], filtered_data['Temp'])
 
 # Apply the formula ln((beta*(da/dT))/((1-alpha)^n))
-filtered_data['plot_y'] = np.log((beta * filtered_data['dAlpha_dT']) / ((1 - filtered_data['Alpha'])**n))
+filtered_data['plot_y'] = np.log((beta * filtered_data['dAlpha_dT']) / ((1 - sigmoid(filtered_data['Temp'], A_fit, B_fit, T_m_fit))**n))
 
 # Compute 1000/T (in Kelvin)
 filtered_data['plot_x'] = 1000 / filtered_data['Temp_K']
@@ -74,14 +74,16 @@ plt.figure(figsize=(10, 6))
 plt.scatter(filtered_data['plot_x'], filtered_data['plot_y'], color='blue', label='Modified Arrhenius Plot')
 plt.xlabel('1000/T (1/K)', fontsize=fontsize)
 plt.ylabel('ln(beta * dAlpha/dT / (1-alpha)^n)', fontsize=fontsize)
-plt.title('unmodified Chang plot', fontsize=fontsize)
+plt.title('Modified Chang plot', fontsize=fontsize)
 plt.legend()
 plt.grid(True)
 
 # Fit to line and report the slope and intercept
 slope, intercept = np.polyfit(filtered_data['plot_x'], filtered_data['plot_y'], 1)
-print('Ea (slope): ', slope)
-print('k0 (intercept): ', intercept)
+print('Ea/R (m): ', slope)
+print('Ea: ', slope * -8.314)
+print('ln(k0) (b): ', intercept)
+print('k0: ', np.exp(intercept))
 
 # Plot the fitted line
 plt.plot(filtered_data['plot_x'], slope * filtered_data['plot_x'] + intercept, color='red', label='fit: Ea=%5.3f, k0=%5.3e' % (slope, np.exp(intercept)))
@@ -92,4 +94,5 @@ plt.xticks(fontsize=fontsize)
 plt.yticks(fontsize=fontsize)
 
 plt.show()
+
 # %%
